@@ -1,0 +1,46 @@
+<!--=== Header ===-->
+<div class="header">
+	<div class="container">
+		<!-- Logo -->
+		<a class="logo" href="index.html">
+			<%= image_tag "logo.png"%>
+		</a>
+		<!-- End Logo -->
+
+		<!-- Topbar -->
+		<div class="topbar">
+			<ul class="loginbar pull-right">
+				<%if current_user.present?%>
+					<li><a href="/home">Home</a></li> |
+					<li><a href="/logout">Sair</a></li>
+				<%else%>
+					<li><a href="/users/new">Cadastrar-se</a></li>
+					<li class="topbar-devider"></li>
+					<li><a href="/login">Login</a></li>
+				<%end%>
+			</ul>
+		</div>
+		<!-- End Topbar -->
+
+		<!-- Toggle get grouped for better mobile display -->
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="fa fa-bars"></span>
+		</button>
+		<!-- End Toggle -->
+	</div><!--/end container-->
+
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+		<div class="container">
+			<ul class="nav navbar-nav">
+				<li><a href="/users">Usuarios</a></li>
+				<li><a href="/groups">Grupos</a></li>
+				<li><a href="/events">Eventos</a></li>
+				<li><a href="/dbox">Arquivos</a></li>
+			</ul>
+		</div><!--/end container-->
+	</div><!--/navbar-collapse-->
+</div>
+<!--=== End Header ===-->

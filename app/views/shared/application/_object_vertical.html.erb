@@ -1,0 +1,16 @@
+<div class="object-vertical">
+	<div class="panel">
+		<div><center><a href="<%=node.path%>">
+			<img src="<%=node.path_thumbnail%>" alt="dummy image" class="img-responsive">
+		</center></a></div>
+		<div class="panel-body">
+			<h4 class="media-heading"><%=node.name%></h4>
+			<span class="glyphicon glyphicon-eye-open">200&nbsp;</span>
+			<span class="glyphicon glyphicon-star">4,5&nbsp;</span>
+			<%publisher = node.publisher%>
+			<%if publisher.present?%>
+				<span>Por <%=link_to publisher.name,publisher.path%></a></span>
+			<%end%>
+		</div>
+	</div>
+</div>

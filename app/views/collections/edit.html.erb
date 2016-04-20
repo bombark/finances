@@ -1,0 +1,152 @@
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Preferencias</h1>
+
+        <%= form_for(:user, url:"/users/#{@user["rid"]}", method: :put) do |f| %>
+            <%= f.hidden_field :func, value:"title" %>
+
+            <%= f.label :Nome %>
+            <%= f.text_field :name, value:@user["title"] ,class: 'form-control' %>
+
+            <%= f.label :senha %>
+            <%= f.text_field :password, value: "", class: 'form-control' %>
+            <%= f.text_field :password, value: "", class: 'form-control' %>
+            <%= f.text_field :password, value: "", class: 'form-control' %>
+
+            <%= f.submit "Atualizar", class: "btn btn-primary" %>
+        <% end %>
+
+        <h2>Mora em</h2>
+        <%= form_for(:user, url:"/users/#{@user["rid"]}", method: :put) do |f| %>
+            <%= f.hidden_field :func, value:"worked_at" %>
+
+            <%= f.label :Local %>
+            <input name="lives_in" value="Apple, Orange" disabled="true">
+            <ul id="lives_in"></ul>
+
+
+            <%= f.submit "Atualizar", class: "btn btn-primary" %>
+        <% end %>
+
+        <form>
+
+
+            <input type="submit" value="Submit">
+        </form>
+
+
+        <h2>Trabalha em</h2>
+        <%= form_for(:user, url:"/users/#{@user["rid"]}", method: :put) do |f| %>
+            <%= f.hidden_field :func, value:"work_at" %>
+
+            <%= f.label :Nome %>
+            <%= f.hidden_field :work_at, value:"", id:"work_at", class: 'form-control' %>
+            <ul id="tag_work_at"></ul>
+
+            <%= f.submit "Atualizar", class: "btn btn-primary" %>
+        <% end %>
+
+
+    avatar
+        <%= form_for(:user, url:"/users/#{@user["rid"]}", method: :put) do |f| %>
+            <%= f.hidden_field :func, value:"avatar" %>
+
+            <%= f.label :Nome %>
+            <%= f.file_field :avatar %>
+
+            <%= f.submit "Atualizar", class: "btn btn-primary" %>
+        <% end %>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+$(function(){
+    $('#tag_work_at').tagit({
+    	//availableTags: sampleTags,
+    	allowSpaces: true,
+    	singleField: true,
+    	singleFieldNode: $('#work_at'),
+
+    	autocomplete: {
+    		source: function( request, response ) {
+
+    			acAjax = $.ajax({
+    			    url: "/universities/?format=json&query="+request.term,
+    			    dataType: "json",
+    			    data: {
+    			        term: request.term
+    			    },
+    			    success: function( data ) {
+    			        returnedUsers = data;
+    			        response( $.map( data, function( item ) {
+    			            return {
+    			                label: item.title,
+    			                value: item.rid
+    			            }
+    			        }));
+    			    },
+    			    error: function(xhr, status, error) {
+    			        returnedUsers = [];
+    			    },
+    			    complete: function(xhr, status, error) {
+
+    			    }
+    			});
+    		},
+    		minLength: 2
+    	},
+    });
+
+
+    $('#lives_in').tagit({
+    	//availableTags: sampleTags,
+    	allowSpaces: true,
+    	singleField: false,
+    	singleFieldNode: $('#lives_in'),
+
+    	autocomplete: {
+    		source: function( request, response ) {
+
+    			acAjax = $.ajax({
+    			    url: "/countries/?format=json&query="+request.term,
+    			    dataType: "json",
+    			    data: {
+    			        term: request.term
+    			    },
+    			    success: function( data ) {
+    			        returnedUsers = data;
+    			        response( $.map( data, function( item ) {
+    			            return {
+    			                label: item.title,
+    			                value: item.rid
+    			            }
+    			        }));
+    			    },
+    			    error: function(xhr, status, error) {
+    			        returnedUsers = [];
+    			    },
+    			    complete: function(xhr, status, error) {
+
+    			    }
+    			});
+    		},
+    		minLength: 2
+    	},
+    });
+
+
+
+
+
+
+});
+</script>

@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Instituições</h1>
+</div>
+
+<ul class="nav nav-justified">
+	<li><%=link_neex "Todas<span class='badge'>#{Vertice::Institution.count}</span>",""%></li>
+	<li><%=link_neex "Universidades<span class='badge'>#{Vertice::University.count}</span>","universities"%></li>
+	<li><%=link_neex "Escolas<span class='badge'>0</span>","schools"%></li>
+	<li><%=link_neex "Empresas<span class='badge'>0</span>","schools"%></li>
+	<%if current_user.present?%>
+		<li><a href="" data-toggle="modal" data-target="#addinstitution"> Nova Instituição </span></a></li>
+	<%end%>
+	<li class="navbar-form">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for..." id="searcher">
+			<span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="neex_searcher('searcher','#main','')">Go!</button>
+			</span>
+		</div>
+	</li>
+</ul><hr>
+
+<div id="main">
+    <%for institution in @institutions%>
+    	<div class="col-sm-2">
+    		<%= render partial: "shared/application/itemvert", locals: {node: institution} %>
+    	</div>
+    <%end%>
+</div>
+
+
+
+<%= render('form',modal:true,id:"addinstitution")%>

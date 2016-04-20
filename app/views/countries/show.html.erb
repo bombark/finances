@@ -1,0 +1,55 @@
+<div class="page-header">
+  <h1><%=@country.name%></h1>
+</div>
+
+
+<div class="col-md-9">
+<div id="map"></div>
+<script>
+var map = new ol.Map({
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.MapQuest({layer: 'osm'})
+    })
+  ],
+  target: 'map',
+  view: new ol.View({
+    center: ol.proj.transform([<%=@country.longitude%>,<%=@country.latitude%>], 'EPSG:4326', 'EPSG:3857'),
+    zoom: 4
+  })
+});
+</script>
+
+<ul class="nav nav-justified">
+	<li><%=link_neex "Estados<span class='badge'>#{@country.states.count}</span>","states"%></li>
+	<li><%=link_neex "Cidades<span class='badge'>0</span>","cities"%></li>
+	<li><%=link_neex "Universidades<span class='badge'>#{@country.universities.count}</span>","universities"%></li>
+	<li class="navbar-form">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for..." id="searcher">
+			<span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="neex_searcher('searcher','#main','')">Go!</button>
+			</span>
+		</div>
+	</li>
+</ul><hr>
+
+<div id="main">
+</div>
+
+</div>
+
+
+
+<div class="col-md-3">
+    <div class="row">
+    <h3>Coleções</h3>
+    	<%for object in @country.about.all%>
+    		<div class="col-md-12">
+    			<%= render partial: "shared/application/object_vertical", locals: {node: object} %>
+    		</div>
+    	<%end%>
+    </div>
+</div>
+
+<br><br>

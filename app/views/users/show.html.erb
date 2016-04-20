@@ -1,0 +1,49 @@
+
+<div class="col-md-9">
+	<div class="page-header">
+	  <h1><%=@user.name%></h1>
+	</div>
+
+
+
+	<%if current_user.present?%>
+		<%if current_user.followers.exists?@user%>
+			<%=link_to("Deixar de Seguir","/home/unfollows?akk=#{@user.id}")%><br><br><br>
+		<%else%>
+			<%=link_to("Seguir Pessoa","/home/follows?akk=#{@user.id}")%><br><br><br>
+		<%end%>
+	<%end%>
+
+
+	<ul class="nav nav-justified">
+		<li><%=link_neex "Coleções<span class='badge'>#{@user.collections.count}</span>","collections"%></li>
+		<li><%=link_neex "Grupos<span class='badge'>#{@user.groups.count}</span>","groups"%></li>
+		<li><%=link_neex "Eventos<span class='badge'>#{@user.events.count}</span>","events"%></li>
+		<li><%=link_neex "Seguidores<span class='badge'>#{@user.followers.count_in}</span>","followers"%></li>
+	</ul><hr>
+
+	<div class="row" id="main">
+
+	</div>
+</div>
+
+
+
+<div class="col-md-3">
+	<img src="<%=@user.path_thumbnail%>" class="img-responsive">
+
+	<div class="headline"><h2>Amigos  <span class='badge'><%=@user.friends.count%></span></h2></div>
+	<div class="row">
+		<% for friend in @user.friends.all_inout %>
+		    <%= render partial: "shared/application/icon", locals: {node: friend} %>
+		<%end%>
+	</div>
+
+
+	<div class="headline"><h2> Seguidores <span class='badge'><%=@user.followers.count_in%></span></h2></div>
+	<div class="row">
+	<% for user in @user.followers.all_in %>
+	    <%= render partial: "shared/application/icon", locals: {node: user} %>
+	<%end%>
+	</div>
+</div>

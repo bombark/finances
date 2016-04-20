@@ -1,0 +1,13 @@
+development: &development
+  host: localhost
+  database: Neex
+  username: root
+  password: root
+  port: 2480
+
+test:
+  host: localhost
+  database: Neex-tmp
+  username: admin
+  password: admin
+  port: 2480

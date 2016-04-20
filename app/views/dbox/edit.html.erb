@@ -1,0 +1,10 @@
+<%= form_for(:dbox, url: @dbox.path, method:"put") do |f| %>
+
+		<%= f.label :nome %>
+		<%= f.text_field :name, class: 'form-control' %>
+
+		<%= f.label :descrição %>
+		<%= f.text_field :description, class: 'form-control' %>
+
+        <%= f.submit "Atualizar", class: "btn btn-primary" %>
+<% end %>

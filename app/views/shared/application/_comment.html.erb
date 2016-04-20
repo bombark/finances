@@ -1,0 +1,13 @@
+<li class="media">
+    <div class="media-left">
+    <a href="#">
+    <img class="media-object" src="<%=comment.from.path_thumbnail%>" alt="..." width=64>
+    </a>
+    </div>
+    <div class="media-body">
+    <h4 class="media-heading"><%=comment.from.name%></h4>
+    <%=comment.text%>
+        <%=comment.count_likes%> <a href="/home/likes?akk=<%=comment.id%>"> curtir </a>
+        <a href="/home/uncomments?akk=<%=comment.id%>"> apagar </a>
+    </div>
+</li>

@@ -1,0 +1,49 @@
+
+<div class="col-md-9">
+    <div class="page-header">
+      <h1><%=@place.name%></h1>
+    </div>
+
+
+    <div id="map" class="map"></div>
+
+
+    <script>
+
+var map = new ol.Map({
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.MapQuest({layer: 'osm'})
+    })
+  ],
+  target: 'map',
+  view: new ol.View({
+    center: ol.proj.transform([<%=@place.longitude%>,<%=@place.latitude%>], 'EPSG:4326', 'EPSG:3857'),
+    zoom: 6
+  })
+});
+
+    </script>
+</div>
+
+
+<div class="col-md-3">
+    <div class="row">
+        <h3>Localizado em</h3>
+        <%for place in @place.mothers%>
+            <%= render partial: "shared/application/icon", locals: {node: place} %>
+        <%end%>
+    </div><hr>
+
+    <div class="row">
+        <h3>Sublocais</h3>
+        <%for place in @place.sons.all%>
+            <%= render partial: "shared/application/icon", locals: {node: place} %>
+        <%end%>
+    </div><hr>
+
+    <div class="row">
+        <h3>Moradores</h3>
+    </div><hr>
+
+</div>

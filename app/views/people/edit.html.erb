@@ -1,0 +1,10 @@
+
+<%= form_for(:person, url: "#{@person.path}", method:"put") do |f| %>
+    <%= f.label :nome %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+
+	<%= text_area(:person, :description, cols: "100%", rows: 20)%>
+
+    <%= f.submit "novo", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,41 @@
+<%modal = modal || false%>
+<%action = action || "/events"%>
+
+<%= form_for(:event, url: action, method:"post") do |f| %>
+
+    <%if modal==true%>
+    <div class="modal fade" id="<%=id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Novo Evento</h4>
+          </div>
+          <div class="modal-body">
+    <%end%>
+
+            <%= f.label :nome %>
+            <%= f.text_field :name, class: 'form-control' %>
+
+            <%= f.label :descrição %>
+            <%= f.text_field :description, class: 'form-control' %>
+
+            <%= f.label :onde %>
+            <%= f.text_field :place, class: 'form-control' %>
+
+    <%if modal==true%>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%end%>
+
+            <%= f.submit "Novo", class: "btn btn-primary" %>
+
+    <%if modal==true%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+
+<% end %>

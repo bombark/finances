@@ -1,0 +1,8 @@
+<ul>
+<%for empresa in @empresas%>
+	<div class="col-lg-3">
+		<img class="img-thubmnail" src="<%=empresa.path_thumbnail%>" alt="Generic placeholder image" height="140">
+		<h2><%=link_to(empresa.name,empresa.path)%></h2>
+	</div>
+<%end%>
+</ul>

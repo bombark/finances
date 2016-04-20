@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Línguas</h1>
+</div>
+
+<ul class="nav nav-justified">
+	<li><%=link_neex "Todas<span class='badge'>#{Vertice::Language.count}</span>",""%></li>
+	<li class="navbar-form">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for..." id="searcher">
+			<span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="neex_searcher('searcher','#main','')">Go!</button>
+			</span>
+		</div>
+	</li>
+</ul><hr>
+
+<div id="main">
+	<%for language in @languages%>
+		<div class="col-sm-2">
+			<%= render partial: "shared/application/itemvert", locals: {node: language} %>
+		</div>
+	<%end%>
+</div>

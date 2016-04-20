@@ -1,0 +1,9 @@
+<br><br>
+
+<%=render('form', action:"/groups/21:15/add_project")%>
+
+<ul>
+<%for project in @projects%>
+	<li><%=link_to(project.name)%></li>
+<%end%>
+</ul>

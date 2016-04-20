@@ -1,0 +1,103 @@
+<div class="container content profile">
+	<div class="row">
+
+		<div class="col-md-12">
+			<h1>Finanças de <%=link_to(@root.name,@root.path)%></h1><hr>
+
+			<a href="" data-toggle="modal" data-target="#sendmoney">Enviar Dinheiro</a><br>
+
+			<div class="profile-body">
+
+				<h1> Caixa </h1>
+				<div class="table-search-v1 margin-bottom-20">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered table-striped">
+							<thead>
+								<tr>
+									<th> De </th>
+									<th> Dia </th>
+									<th> Valor </th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+
+				<h1> Entrada </h1>
+				<div class="table-search-v1 margin-bottom-20">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered table-striped">
+							<thead>
+								<tr>
+									<th> De </th>
+									<th> Descrição </th>
+									<th> Finalidade </th>
+									<th> Data </th>
+									<th> Valor </th>
+								</tr>
+							</thead>
+							<tbody>
+								<%Edge::SendMoney.all_in(@root).each do |edge|%>
+									<tr>
+										<td><%=link_to(edge.from.name,edge.from.path)%></td>
+										<td class="td-width"><%=edge.description%></td>
+										<td>
+											<%if edge.finality.empty?%>
+											 	none
+											<%else%>
+												<%=edge.finality.name%>
+											<%end%>
+										</td>
+										<td><%=edge.date%></td>
+										<td><%=edge.value%></td>
+									</tr>
+								<%end%>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<h1> Saida </h1>
+				<div class="table-search-v1 margin-bottom-20">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered table-striped">
+							<thead>
+								<tr>
+									<th> Para </th>
+									<th> Motivo </th>
+									<th> Dia </th>
+									<th> Valor </th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<%Edge::SendMoney.all_out(@root).each do |edge|%>
+									<tr>
+										<td>
+											<%=link_to(edge.to.name,edge.to.path)%>
+										</td>
+										<td class="td-width"><%=edge.description%></td>
+										<td><%=edge.date%></td>
+										<td><%=edge.value%></td>
+									</tr>
+								<%end%>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%= render partial:"finances/form", locals: {id:"sendmoney",modal:true} %>

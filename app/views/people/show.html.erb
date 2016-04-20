@@ -1,0 +1,25 @@
+
+<div class="col-md-9">
+	<h1> <%=@person.name%>
+		<small>
+			<%=link_to('Destroy', @person.path, :confirm => 'Are you sure?', :method => :delete)%>
+			<%=link_to('edit', @person.path_edit)%>
+		</small>
+	</h1>
+
+
+
+	<%=@person.description%>
+</div>
+
+
+<div class="col-md-3">
+	<div class="row">
+		<h2> Referencias </h2>
+		<%for reference in @person.references.all%>
+			<div class="col-md-12">
+			<%= render partial: "shared/application/itemvert", locals: {node: reference} %>
+			</div>
+		<%end%>
+	</div>
+</div>

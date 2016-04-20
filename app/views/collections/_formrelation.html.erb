@@ -1,0 +1,44 @@
+<%modal  = modal || false%>
+<%action = action || "/"%>
+
+<%= form_for(:weburl, url: action, method:"post") do |f| %>
+
+    <%if modal==true%>
+    <div class="modal fade" id="<%=id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Adicionar novo Item Existente</h4>
+          </div>
+          <div class="modal-body">
+
+<div class="alert alert-warning" role="alert">
+    Teste adicionar um video do Youtube<br>
+    Não esqueça de sempre iniciar a url com http://
+</div>
+
+    <%end%>
+
+			<%= f.label :nome %>
+			<%= f.text_field :name, class: 'form-control' %>
+
+			<%= f.label :url %>
+			<%= f.text_field :weburl, class: 'form-control', placeholder: "https://www.youtube.com/watch?v=LQHKNX-G_cw" %>
+
+    <%if modal==true%>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%end%>
+
+            <%= f.submit "Adicionar", class: "btn btn-primary" %>
+
+    <%if modal==true%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+
+<% end %>

@@ -1,0 +1,42 @@
+<div class="page-header">
+	<h1><%=@subject.name%></h1>
+
+	<%=link_to('Destroy', @subject.path, :confirm => 'Are you sure?', :method => :delete)%>
+
+	<a href="#" data-toggle="modal" data-target="#add"> Criar </a>
+	<%= render partial: "shared/application/form", locals: {id:"add", modal:true, action:"#{@subject.path}/addsub"} %>
+
+</div>
+
+
+
+
+
+
+<div class="row">
+	<h2> Em Destaque </h2>
+</div><br>
+
+<div class="row">
+	<h2> Sub Assuntos </h2>
+	<%for subject in @subject.sons.all%>
+		<div class="col-md-2">
+			<%= render partial: "shared/application/itemvert", locals: {node: subject} %>
+		</div>
+	<%end%>
+</div><br>
+
+
+<div class="row">
+	<h2> Coleções de <%=@subject.name%> </h2>
+	<%for subject in @subject.about.all%>
+		<div class="col-md-2">
+			<%= render partial: "shared/application/itemvert", locals: {node: subject} %>
+		</div>
+	<%end%>
+</div><br>
+
+
+<div class="row">
+	<h2> Adicionados recentemente </h2>
+</div><br>

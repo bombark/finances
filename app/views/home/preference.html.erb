@@ -1,0 +1,33 @@
+
+<div class="page-header">
+  <h1>Preferencias</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Avatar</h2>
+
+
+        <img src="<%=@user.path_thumbnail%>" class="img-responsive">
+        <%= form_for(:user, url: "/home/update?akk=thumbnail", method:"post") do |f| %>
+          <%= f.label :file %>
+          <%= f.file_field :bitstream %>
+          <%= f.submit "Upload novo Thumbnail", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+
+
+    <%= form_for(:user, url: "/home/update", method:"post") do |f| %>
+    <div class="col-md-9">
+        <h2>Sobre</h2>
+          <%= f.label :nome %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+        <center><hr>
+            <%= f.submit "Atualizar", class: "btn btn-primary" %>
+        </center>
+    </div>
+    <% end %>
+
+
+</div>

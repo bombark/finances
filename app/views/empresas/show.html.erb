@@ -1,0 +1,6 @@
+<h1> <%=@empresa.name%> </h1>
+
+<h2> Contas </h2>
+<%for conta in @empresa.contas%>
+	<%=conta.value%>
+<%end%>

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>Pessoas</h1>
+</div>
+
+<ul class="nav nav-justified">
+	<li><a href="feed">Todas<span class="badge"><%=Vertice::Person.count%></span></a></li>
+	<li><a href="feed">Meus Amigos<span class="badge"><%=current_user.friends.count%></span></a></li>
+	<li><a href="feed">Meus Idolos<span class="badge"><%=current_user.followers.count%></span></a></li>
+	<li><a href="" data-toggle="modal" data-target="#addperson"> Nova Pessoa </span></a></li>
+	<li class="navbar-form">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for...">
+			<span class="input-group-btn">
+			<button class="btn btn-default" type="button">Go!</button>
+			</span>
+		</div>
+	</li>
+</ul><hr>
+
+
+
+<%for person in @persons%>
+	<%= render partial: "item", locals: {object: person} %>
+<%end%>
+
+
+
+<%= render partial: "shared/application/form", locals: {id:"addperson", modal:true, action:"/persons"} %>

@@ -1,0 +1,55 @@
+<div class="col-md-9">
+	<div class="page-header">
+		<h1> <%=@classe.name%> </h1>
+	</div>
+
+
+
+	<a href="" data-toggle="modal" data-target="#addclasse">Criar subclasse</a>
+	<%= render partial:"classes/form", locals: {action:"#{@classe.path}/addclasse",id:"addclasse",modal:true} %>
+
+	<a href="" data-toggle="modal" data-target="#addmethod">Criar Metodo</a>
+	<%= render partial:"methods/form", locals: {action:"#{@classe.path}/addmethod",id:"addmethod",modal:true} %>
+
+
+	<a href="" data-toggle="modal" data-target="#addmethod">Adicionar Arquivo</a>
+	<%= render partial:"methods/form", locals: {action:"#{@classe.path}/addmethod",id:"addmethod",modal:true} %>
+
+
+
+
+	<h2>Ativos</h2>
+	<table class='table'>
+		<tr><th>Nome</th><th>Descrição</th></tr>
+		<%for method in @classe.methods.all%>
+			<tr><td><%=link_to(method.name,method.path)%></td><td><%=method.description%></td></tr>
+		<%end%>
+	</table>
+
+	<h2>Passivos</h2>
+	<table class='table'>
+		<tr><th>Nome</th><th>Descrição</th></tr>
+	</table>
+</div>
+
+
+<div class="col-md-3">
+	<div class="row">
+		<h2>Classes Mãe</h2>
+		<%for mother in @classe.mothers%>
+			<div class="col-md-4">
+				<%= render partial: "shared/application/icon", locals: {node: mother} %>
+			</div>
+		<%end%>
+	</div>
+
+
+	<div class="row">
+		<h2>Subclasses</h2>
+		<%for son in @classe.sons.all%>
+			<div class="col-md-4">
+				<%= render partial: "shared/application/icon", locals: {node: son} %>
+			</div>
+		<%end%>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+
+
+<div class="row">
+<% for node in @members %>
+	<div class="col-md-3">
+		<%= render partial: "shared/application/itemvert", locals: {node: node} %>
+	</div>
+<%end%>
+</div>

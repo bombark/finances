@@ -1,0 +1,85 @@
+
+
+
+    <div class='col-md-3'>
+        <div class='row'>
+            <h3>Publicador</h3>
+            <div class='col-md-12'>
+                <%= render partial: "shared/application/icon_horizontal", locals: {node: @collection.publisher} %>
+            </div>
+        </div><hr>
+
+        <div class='row'>
+            <h3>Seguidores</h3>
+            <%for follower in @collection.followers.all%>
+                <%= render partial: "shared/application/icon", locals: {node: follower} %>
+            <%end%>
+        </div><hr>
+
+        <div class='row'>
+            <h3>Sobre</h3>
+            <%for about in @collection.about.all%>
+                <div class="col-md-12">
+                <%= render partial: "shared/application/icon_horizontal", locals: {node: about} %>
+                </div>
+            <%end%>
+        </div>
+
+        <div class='row'>
+            <%= form_for(:about, url:"#{@collection.path}/addabout", method:"post") do |f| %>
+                <%= f.text_field :id, class: 'form-control', :placeholder => "exemplo: 43:2"%>
+                <%= f.submit "Adicionar", class: "btn btn-primary" %>
+            <%end%>
+        </div><hr>
+
+    </div>
+
+
+    <div class='col-md-9'>
+        <div class='row'>
+
+            <div class="page-header">
+                <h1><%=@collection.name%></h1>
+            </div>
+            <%=@collection.description%>
+
+
+        <%if current_user.present?%>
+
+                <%if current_user.favorites.exists?@collection%>
+                    <%=link_to("Deixar de seguir Coleção","/home/unfollows?akk=#{@collection.id}")%>
+                <%else%>
+                    <%=link_to("Seguir Coleção","/home/follows?akk=#{@collection.id}")%>
+                <%end%>
+
+                <%=render "formrelation",modal:true, id:"dbox_add", action:"#{@collection.path}/addweb"%>
+                <%=render "dbox/form",modal:true, id:"dbox_create", action:"#{@collection.path}/upload"%>
+
+        <%end%>
+        </div><br><br>
+
+        <div class='row'>
+            <h3>
+                Arquivos
+
+                <%if current_user.present?%>
+                    <small style="float:right">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#dbox_add">
+                            Adicionar
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#dbox_create">
+                            Upload
+                        </button>
+                    </small>
+                <%end%>
+            </h3>
+
+            <%for dbox in @collection.dbox.all%>
+                <div class="col-md-3">
+                    <%= render partial: "shared/application/object_vertical", locals: {node: dbox} %>
+                </div>
+            <%end%>
+
+        </div>
+
+    </div>

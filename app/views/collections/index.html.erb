@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Coleções</h1>
+</div>
+
+
+<ul class="nav nav-justified">
+	<li><%=link_neex "Todas<span class='badge'>#{Vertice::Collection.count}</span>",""%></li>
+    <%if current_user.present?%>
+	   <li><%=link_neex "Minhas Coleções<span class='badge'>#{current_user.collections.count}</span>","mycollections"%></li>
+	   <li><a href="" data-toggle="modal" data-target="#addcollection"> Nova Coleção </span></a></li>
+    <%end%>
+	<li class="navbar-form">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search for..." id="searcher">
+			<span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="neex_searcher('searcher','#main','')">Go!</button>
+			</span>
+		</div>
+	</li>
+</ul><hr>
+
+
+<div class="row" id="main">
+	<% for node in @collections %>
+		<div class="col-sm-2">
+		<%= render partial: "shared/application/itemvert", locals: {node: node} %>
+		</div>
+	<%end%>
+</div>
+
+
+<%= render('form',modal:true,id:"addcollection")%>

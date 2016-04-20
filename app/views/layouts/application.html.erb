@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Neex</title>
+	<meta charset="utf-8">
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head><body>
+	<div class="wrapper">
+		<%= render 'shared/application/header' %>
+
+		<%= render 'shared/mustache/loading' %>
+		<div id="neex-vt-buffer"></div>
+
+		<div class="container content">
+			<% if notice %>
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+					<%= notice %>
+				</div>
+			<% end %>
+
+
+			<%= yield %>
+		</div>
+
+
+		<%= render 'shared/application/footer' %>
+	</div><!--/wrapper-->
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</body></html>

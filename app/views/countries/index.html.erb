@@ -1,0 +1,51 @@
+
+<div id="map" class="map"></div>
+
+
+<script>
+
+var raster = new ol.layer.Tile({
+  source: new ol.source.MapQuest({layer: 'sat'})
+});
+
+var vector = new ol.layer.Vector({
+  source: new ol.source.GeoJSON({
+    projection: 'EPSG:3857',
+    url: '/thumbnails/geomaps'
+  })
+});
+
+var map = new ol.Map({
+  layers: [raster, vector],
+  target: 'map',
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 2
+  })
+});
+
+
+// select interaction working on "singleclick"
+//var selectSingleClick = new ol.interaction.Select();
+
+// select interaction working on "click"
+var selectClick = new ol.interaction.Select({
+  condition: ol.events.condition.click
+});
+
+// select interaction working on "mousemove"
+/*var selectMouseMove = new ol.interaction.Select({
+  condition: ol.events.condition.mouseMove
+});*/
+
+
+selectClick.getFeatures().on('add', function (e) {
+    console.log(e.element.aa)
+    window.location.href = "/countries/"+e.element.aa;
+});
+
+
+
+map.addInteraction(selectClick);
+
+</script>

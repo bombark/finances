@@ -1,0 +1,42 @@
+<div class="container content profile">
+	<div class="row">
+		<%= render 'shared/menus/home' %>
+		<div class="col-md-9">
+			<div class="profile-body">
+						<h1> Saida </h1><hr>
+
+						<a href="" class="btn btn-primary" data-toggle="modal" data-target="#sendmoney">Enviar Dinheiro</a><br>
+						<div class="table-search-v1 margin-bottom-20">
+							<div class="table-responsive">
+								<table class="table table-hover table-bordered table-striped">
+									<thead>
+										<tr>
+											<th> Para</th>
+											<th> Descrição </th>
+											<th> Dia </th>
+											<th> Valor </th>
+										</tr>
+									</thead>
+									<tbody>
+
+									<%Edge::SendMoney.all_out(@user).each do |edge|%>
+										<tr>
+											<td>
+												<%=link_to(edge.to.name,edge.to.path)%>
+											</td>
+											<td class="td-width"><%=edge.description%></td>
+											<td><%=edge.date%></td>
+											<td><%=edge.value%></td>
+										</tr>
+									<%end%>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container content">
+	<div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+			<%= form_for(:session, url: "/sessions",method:"post",class:"reg-page") do |f| %>
+                <div class="reg-header">
+                    <h2>Login to your account</h2>
+                </div>
+
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <%= f.email_field :email, class:'form-control',placeholder:"Username" %>
+                </div>
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <%= f.password_field :password, class: 'form-control',placeholder:"Password" %>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                        <label><input type="checkbox"> Stay signed in</label>
+                    </div>
+                    <div class="col-md-6">
+						<%= f.submit "Login",class:"btn-u pull-right" %>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h4>Forget your Password ?</h4>
+                <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+			<% end %>
+        </div>
+    </div><!--/row-->
+</div>

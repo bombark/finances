@@ -1,0 +1,58 @@
+
+
+<ol class="breadcrumb">
+	<li><a href="?mes=1">Janeiro</a></li>
+	<li><a href="?mes=2">Fevereiro</a></li>
+	<li><a href="?mes=3">Março</a></li>
+	<li><a href="?mes=4">Abril</a></li>
+	<li><a href="?mes=5">Maio</a></li>
+	<li><a href="?mes=6">Junho</a></li>
+	<li><a href="?mes=7">Julho</a></li>
+	<li><a href="?mes=8">Agosto</a></li>
+	<li><a href="?mes=9">Setembro</a></li>
+	<li><a href="?mes=10">Outubro</a></li>
+	<li><a href="?mes=11">Novembro</a></li>
+	<li><a href="?mes=12">Dezembro</a></li>
+</ol>
+
+
+
+<h1> Contas </h1>
+<table class='table'>
+	<tr>
+		<th>Para</th>
+		<th>Valor</th>
+	</tr>
+
+	<%for conta in @predio.contas%>
+		<tr>
+			<td><%=link_to(conta.to.name,conta.to.path)%></td>
+			<td><%=conta.value%></td>
+		</tr>
+	<%end%>
+	<tr>
+		<td></td>
+		<td>0</td>
+	</tr>
+</table>
+
+
+<h1> Contas divididas por Apartamento </h1>
+<table class="table">
+	<tr>
+		<th>Apartamento</th>
+		<%for conta in @predio.contas%>
+				<th><%=conta.to.name%></th>
+		<%end%>
+	</tr>
+
+
+<%for apto in @aptos%>
+	<tr>
+		<td><%=apto.name%></td>
+		<%for conta in @predio.contas%>
+				<td><%=sprintf("%.2f",conta.value/@aptos.length)%></td>
+		<%end%>
+	</tr>
+<%end%>
+</table>

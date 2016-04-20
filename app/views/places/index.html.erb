@@ -1,0 +1,13 @@
+<br><input id="searcher" type="text" class="form-control"><br><br>
+
+<div id="task-form"></div>
+
+<%= render partial: "shared/mustache/itemvert" %>
+
+<%=debug @places%>
+
+<script>
+	$(function() {
+		//searcher("#searcher", "#task-form", "/places?format=json")
+	});
+</script>

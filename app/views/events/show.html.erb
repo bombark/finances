@@ -1,0 +1,42 @@
+
+
+<div class="col-md-9">
+
+
+	<h1><%=@event.name%></h1>
+	<div class="headline"><h2>Descrição</h2></div>
+
+
+
+	<div class="headline"><h2>Local</h2></div>
+
+
+	<div class="headline"><h2>Comentários</h2></div>
+
+
+
+</div>
+
+<div class="col-md-3">
+	<div class="row">
+		<div class="headline"><h2>Ações</h2></div>
+		<%=link_to("Participar","#{@event.path}/addparticipant")%><br>
+		<%=link_to('destroy', @event.path, :confirm => 'Are you sure?', :method => :delete)%><br>
+		<%=link_to('edit', @event.path_edit)%><br>
+	</div>
+
+	<div class="row">
+		<div class="headline"><h2>Organizadores</h2></div>
+		<%for owner in @event.owners.all%>
+			<%= render partial: "shared/application/icon", locals: {node: owner} %>
+		<%end%>
+	</div>
+
+	<div class="row">
+		<div class="headline"><h2>Participantes</h2></div>
+		<%for participant in @event.participants.all%>
+			<%= render partial: "shared/application/icon", locals: {node: participant} %>
+		<%end%>
+	</div>
+</div>
+</div>

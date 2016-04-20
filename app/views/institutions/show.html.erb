@@ -1,0 +1,15 @@
+
+<div class="col-md-9">
+	<h1> <%=@institution.name%>
+		<small>
+			<%=link_to('destroy', @institution.path, :confirm => 'Are you sure?', :method => :delete)%>
+			<%=link_to('edit', @institution.path_edit)%>
+		</small>
+	</h1>
+
+
+</div>
+
+<div class="col-md-3">
+
+</div>

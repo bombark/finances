@@ -1,0 +1,36 @@
+<img class="img-responsive profile-img margin-bottom-20" src="<%=@group.path_thumbnail%>" alt="">
+<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+    <li class="list-group-item">
+        <a href="<%=@group.path%>?akk=Member"><i class="fa fa-group"></i> Membros </a>
+    </li>
+    <li class="list-group-item">
+        <a href="<%=@group.path%>?akk=Group"><i class="fa fa-group"></i> Sub-Grupos </a>
+    </li>
+    <li class="list-group-item">
+        <a href="<%=@group.path%>?akk=Collection"><i class="fa fa-history"></i>Arquivos</a>
+    </li>
+    <li class="list-group-item">
+        <a href="<%=@group.path%>?akk=Project"><i class="fa fa-history"></i>Projetos</a>
+    </li>
+    <li class="list-group-item">
+        <a href="<%=@group.path%>?akk=Event"><i class="fa fa-history"></i>Eventos</a>
+    </li>
+
+    <li class="list-group-item">
+        <a href="<%=@group.path%>/finances"><i class="fa fa-history"></i>Finanças</a>
+    </li>
+
+	<li class="list-group-item">
+        <a href="<%=@group.path%>/edit"><i class="fa fa-history"></i>Configurações</a>
+    </li>
+
+
+    <%if current_user.present?%>
+        <%if @group.members.exists? current_user%>
+            <li class="list-group-item"><%=link_to("Sair do grupo","#{@group.path}/leave")%></li>
+        <%else%>
+            <li class="list-group-item"><%=link_to("Entrar do grupo","#{@group.path}/enter")%></li>
+        <%end%>
+    <%end%>
+
+</ul>
